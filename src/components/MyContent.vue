@@ -4,7 +4,7 @@
     <MySearchbar @mySearch="searchContent"/>
 
     <MyContentCard
-      v-for="(item, index) in filteredContentCards"
+      v-for="(item, index) in myArrayList"
       :key="index"
       :contentObject="item"
     />
@@ -26,7 +26,7 @@ export default {
 // My API, array and what the user searches
   data(){
     return {
-      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=ae88472fec19f34c8ca3084cba86594c&query=" + this.provaOne + "&language=it-IT",
+      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=ae88472fec19f34c8ca3084cba86594c&language=it-IT",
       myArrayList: [],
       userText: ""
     }
@@ -39,40 +39,42 @@ export default {
   methods: {
     // axios call
     getList(){
-      axios
-      .get(this.apiUrl)
-      .then((result) => {
-        this.myArrayList = result.data.results;
-        console.log(this.myArrayList);
-      })
-      .catch((error) => {
-        console.log("Errore", error);
-      })
+      if (this.userText !== "") {
+        
+        let currentUrl = this.apiUrl + "&query=" + this.userText;
+        console.log(1, currentUrl);
+        axios
+        .get(currentUrl)
+        .then((result) => {
+          this.myArrayList = result.data.results;
+          console.log(this.myArrayList);
+        })
+        .catch((error) => {
+          console.log("Errore", error);
+        })
+      }
     },
 
     searchContent(userInput){
       this.userText = userInput;
       console.log(this.userText);
-    },
-
-    provaOne(){
-      this.userText = "ritorno"
+      this.getList()
     }
   },
 
-  computed: {
-    filteredContentCards(){
-      if (this.userText === "") {
+  // computed: {
+  //   filteredContentCards(){
+  //     if (this.userText === "") {
         
-        return this.myArrayList;
-      } else {
+  //       return this.myArrayList;
+  //     } else {
 
-        return this.myArrayList.filter(item => {
-          return item.title.toLowerCase().includes(this.userText.toLowerCase());
-        });
-      }
-    }
-  }
+  //       return this.myArrayList.filter(item => {
+  //         return item.title.toLowerCase().includes(this.userText.toLowerCase());
+  //       });
+  //     }
+  //   }
+  // }
 }
 </script>
 
