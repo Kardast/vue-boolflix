@@ -1,14 +1,32 @@
 <template>
   <div class="my-searchbar">
-    <input type="text">
+    <input type="text" placeholder="Search"
+    v-model="userInput"
+    @keyup.enter="myInputValue()"
+    >
+    <button @click.prevent="myInputValue()">Search</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MySearchbar',
-  props: {
+    name: 'MySearchbar',
 
+    data (){
+        return {
+            userInput: "",
+        }  
+    },
+
+    methods: {
+        myInputValue(){
+            this.$emit('mySearch', this.userInput);
+        },
+        resetSearch(){
+            this.userInput= "";
+            this.myInputValue();
+        }
+    
   }
 }
 </script>
@@ -18,7 +36,7 @@ export default {
 
 .my-searchbar{
     width: 150px;
-    height: 50px;
-    background-color: rgb(90, 90, 124);
+    height: 30px;
+    display: flex;
 }
 </style>

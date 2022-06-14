@@ -1,10 +1,10 @@
 <template>
   <div class="my-content">
 
-    <MySearchbar/>
+    <MySearchbar @mySearch="searchContent"/>
 
     <MyContentCard
-      v-for="(item, index) in myArrayList"
+      v-for="(item, index) in filteredContentCards"
       :key="index"
       :contentObject="item"
     />
@@ -26,7 +26,7 @@ export default {
 // My API, array and what the user searches
   data(){
     return {
-      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=ae88472fec19f34c8ca3084cba86594c&query=ritorno+al+futuro&language=it-IT",
+      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=ae88472fec19f34c8ca3084cba86594c&query=" + this.provaOne + "&language=it-IT",
       myArrayList: [],
       userText: ""
     }
@@ -50,9 +50,28 @@ export default {
       })
     },
 
-    // searchContent(userInput){
-    //   this.userText = userInput;
-    // }
+    searchContent(userInput){
+      this.userText = userInput;
+      console.log(this.userText);
+    },
+
+    provaOne(){
+      this.userText = "ritorno"
+    }
+  },
+
+  computed: {
+    filteredContentCards(){
+      if (this.userText === "") {
+        
+        return this.myArrayList;
+      } else {
+
+        return this.myArrayList.filter(item => {
+          return item.title.toLowerCase().includes(this.userText.toLowerCase());
+        });
+      }
+    }
   }
 }
 </script>
