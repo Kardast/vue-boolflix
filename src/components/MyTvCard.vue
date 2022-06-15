@@ -8,7 +8,9 @@
         <li>{{contentObject.name}}</li>
         <li>{{contentObject.original_name}}</li>
         <li><lang-flag :iso="contentObject.original_language" /></li>
-        <li>{{contentObject.vote_average.round()}}</li>
+        <!-- <li>{{Math.round(contentObject.vote_average / 2)}}</li> -->
+        <i v-for="(star, index) in Math.round(contentObject.vote_average / 2)" :key="index"><font-awesome-icon icon="fa-solid fa-star" /></i>
+        <i v-for="(star, index) in Math.round(5 - contentObject.vote_average / 2)" :key="index + 5"><font-awesome-icon icon="fa-regular fa-star" /></i>
     </ul>
   </div>
 </template>

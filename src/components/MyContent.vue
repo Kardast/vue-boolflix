@@ -2,11 +2,6 @@
   <div class="my-content">
     <MySearchbar @mySearch="searchContent"/>
 
-    <!-- <div v-for="(item, k) in myTvList" :key="k">{{item.vote_average}}</div> -->
-    <!-- <div>{{globalVote}}</div> -->
-
-    <!-- <p>{{capitalizedName}}</p> -->
-
     <MyTvCard
       v-for="(item, index) in myTvList"
       :key="index"
@@ -44,7 +39,6 @@ export default {
       myMoviesArray: [],
       myTvList: [],
       userText: "",
-      // namea: ""
     }
   },
 
@@ -92,27 +86,6 @@ export default {
   },
 
   computed: {
-    // capitalizedName(){
-    //   this.myMoviesArray.forEach(element => {
-    //     let myoi = element
-    //     return console.log(myoi);
-    //     });
-    // }
-    // globalVote(){
-    //   for (let i = 0; i < this.myTvList.length; i++) {
-    //     return this.myTvList[i].vote_average
-    //   } 
-    // }
-    // getFlag(){
-    //   for (let i = 0; i < this.myArrayList.length; i++) {
-    //     let myOrginalLang = this.myArrayList[i].original_language
-    //     if (myOrginalLang === "it") {
-    //       return this.flag = "prova"
-    //       // return console.log(myOrginalLang);
-    //     }
-        
-    //   }
-    // }
     // filteredContentCards(){
     //   if (this.userText === "") {
         
