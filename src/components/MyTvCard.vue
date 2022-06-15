@@ -8,7 +8,7 @@
         <li>{{contentObject.name}}</li>
         <li>{{contentObject.original_name}}</li>
         <li><lang-flag :iso="contentObject.original_language" /></li>
-        <li>{{contentObject.vote_average}}</li>
+        <li>{{contentObject.vote_average.round()}}</li>
     </ul>
   </div>
 </template>
