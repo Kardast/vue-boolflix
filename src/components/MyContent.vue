@@ -3,9 +3,15 @@
 
     <MySearchbar @mySearch="searchContent"/>
 
-    <MyContentCard
-      v-for="(item, index) in myArrayList"
+    <MyTvCard
+      v-for="(item, index) in myTvList"
       :key="index"
+      :contentObject="item"
+    />
+
+    <MyMoviesCard
+      v-for="(item, j) in myMoviesArray"
+      :key="j + myTvList.length"
       :contentObject="item"
     />
   </div>
@@ -14,20 +20,24 @@
 <script>
 import axios from "axios";
 import MySearchbar from './MySearchbar.vue';
-import MyContentCard from './MyContentCard.vue';
+import MyMoviesCard from './MyMoviesCard.vue';
+import MyTvCard from './MyTvCard.vue';
 
 export default {
   name: 'MyContent',
   components: {
       MySearchbar,
-      MyContentCard
+      MyMoviesCard,
+      MyTvCard
   },
 
 // My API, array and what the user searches
   data(){
     return {
-      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=ae88472fec19f34c8ca3084cba86594c&language=it-IT",
-      myArrayList: [],
+      apiUrlMovie: "https://api.themoviedb.org/3/search/movie?api_key=ae88472fec19f34c8ca3084cba86594c&language=it-IT",
+      apiUrlTv: "https://api.themoviedb.org/3/search/tv?api_key=ae88472fec19f34c8ca3084cba86594c&language=it_IT",
+      myMoviesArray: [],
+      myTvList: [],
       userText: "",
     }
   },
@@ -41,17 +51,30 @@ export default {
     getList(){
       if (this.userText !== "") {
         
-        let currentUrl = this.apiUrl + "&query=" + this.userText;
+        let currentUrl = this.apiUrlMovie + "&query=" + this.userText;
+
         console.log(1, currentUrl);
         axios
         .get(currentUrl)
         .then((result) => {
-          this.myArrayList = result.data.results;
-          console.log(1, this.myArrayList);
+          this.myMoviesArray = result.data.results;
+          console.log(12, this.myMoviesArray);
         })
         .catch((error) => {
           console.log("Errore", error);
+        });
+
+        let currentUrlTv = this.apiUrlTv + "&query=" + this.userText;
+
+        axios
+        .get(currentUrlTv)
+        .then((result) => {
+          this.myTvList = result.data.results;
+          console.log(13, this.myTvList);
         })
+        .catch((error) => {
+          console.log("Errore", error);
+        });
       }
     },
 
@@ -94,6 +117,8 @@ export default {
   background-color: rgb(90, 38, 38);
   width: 90%;
   height: 90%;
+  overflow: scroll;
+
 }
 
 </style>
