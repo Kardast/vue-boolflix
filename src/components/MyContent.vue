@@ -28,7 +28,7 @@ export default {
     return {
       apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=ae88472fec19f34c8ca3084cba86594c&language=it-IT",
       myArrayList: [],
-      userText: ""
+      userText: "",
     }
   },
 
@@ -47,7 +47,7 @@ export default {
         .get(currentUrl)
         .then((result) => {
           this.myArrayList = result.data.results;
-          console.log(this.myArrayList);
+          console.log(1, this.myArrayList);
         })
         .catch((error) => {
           console.log("Errore", error);
@@ -62,19 +62,29 @@ export default {
     }
   },
 
-  // computed: {
-  //   filteredContentCards(){
-  //     if (this.userText === "") {
+  computed: {
+    // getFlag(){
+    //   for (let i = 0; i < this.myArrayList.length; i++) {
+    //     let myOrginalLang = this.myArrayList[i].original_language
+    //     if (myOrginalLang === "it") {
+    //       return this.flag = "prova"
+    //       // return console.log(myOrginalLang);
+    //     }
         
-  //       return this.myArrayList;
-  //     } else {
+    //   }
+    // }
+    // filteredContentCards(){
+    //   if (this.userText === "") {
+        
+    //     return this.myArrayList;
+    //   } else {
 
-  //       return this.myArrayList.filter(item => {
-  //         return item.title.toLowerCase().includes(this.userText.toLowerCase());
-  //       });
-  //     }
-  //   }
-  // }
+    //     return this.myArrayList.filter(item => {
+    //       return item.title.toLowerCase().includes(this.userText.toLowerCase());
+    //     });
+    //   }
+    // }
+  }
 }
 </script>
 

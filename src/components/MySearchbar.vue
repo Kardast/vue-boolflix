@@ -22,10 +22,10 @@ export default {
         myInputValue(){
             this.$emit('mySearch', this.userInput);
         },
-        resetSearch(){
-            this.userInput= "";
-            this.myInputValue();
-        }
+        // resetSearch(){
+        //     this.userInput= "";
+        //     this.myInputValue();
+        // }
     
   }
 }
