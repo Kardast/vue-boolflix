@@ -3,11 +3,12 @@
   <div class="my-tv-card">
 
     <ul>
-
-      <li>{{contentObject.name}}</li>
-      <li>{{contentObject.original_name}}</li>
-      <li><lang-flag :iso="contentObject.original_language" /></li>
-      <li>{{contentObject.vote_average}}</li>
+    
+        <img :src="'https://image.tmdb.org/t/p/w342/' + contentObject.poster_path" :alt="contentObject.title">
+        <li>{{contentObject.name}}</li>
+        <li>{{contentObject.original_name}}</li>
+        <li><lang-flag :iso="contentObject.original_language" /></li>
+        <li>{{contentObject.vote_average}}</li>
     </ul>
   </div>
 </template>

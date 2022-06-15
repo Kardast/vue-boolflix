@@ -4,6 +4,7 @@
 
     <ul>
 
+      <img :src="'https://image.tmdb.org/t/p/w342/' + contentObject.poster_path" :alt="contentObject.title">
       <li>{{contentObject.title}}</li>
       <li>{{contentObject.original_title}}</li>
       <li><lang-flag :iso="contentObject.original_language" /></li>
