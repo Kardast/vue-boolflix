@@ -1,18 +1,27 @@
 <template>
   <div class="my-content">
-    <MySearchbar @mySearch="searchContent"/>
+    <header>
 
-    <MyTvCard
-      v-for="(item, index) in myTvList"
-      :key="index"
-      :contentObject="item"
-    />
+      <MySearchbar @mySearch="searchContent"/>
+    </header>
 
-    <MyMoviesCard
-      v-for="(item, j) in myMoviesArray"
-      :key="j + myTvList.length"
-      :contentObject="item"
-    />
+    <main>
+
+      <div class="wrapper">
+
+        <MyTvCard
+          v-for="(item, index) in myTvList"
+          :key="index"
+          :contentObject="item"
+        />
+    
+        <MyMoviesCard
+          v-for="(item, j) in myMoviesArray"
+          :key="j + myTvList.length"
+          :contentObject="item"
+        />
+      </div>
+    </main>
 
   </div>
 </template>
@@ -84,20 +93,6 @@ export default {
       this.getList()
     }
   },
-
-  computed: {
-    // filteredContentCards(){
-    //   if (this.userText === "") {
-        
-    //     return this.myArrayList;
-    //   } else {
-
-    //     return this.myArrayList.filter(item => {
-    //       return item.title.toLowerCase().includes(this.userText.toLowerCase());
-    //     });
-    //   }
-    // }
-  }
 }
 </script>
 
@@ -105,9 +100,18 @@ export default {
 <style scoped lang="scss">
 .my-content{
   background-color: rgb(90, 38, 38);
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   overflow: scroll;
+
+  .wrapper{
+    width: 80%;
+    background-color: rgb(148, 108, 108);
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
 
 }
 
