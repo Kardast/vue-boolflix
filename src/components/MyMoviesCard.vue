@@ -21,17 +21,6 @@
       </div>
 
     </div>
-
-    <!-- <ul>
-
-      <img :src="'https://image.tmdb.org/t/p/w342/' + contentObject.poster_path" :alt="contentObject.title">
-      <li>{{contentObject.title}}</li>
-      <li>{{contentObject.original_title}}</li>
-      <li><lang-flag :iso="contentObject.original_language" /></li>
-      <li>{{Math.round(contentObject.vote_average / 2)}}</li>
-      <i v-for="(star, i) in Math.round(contentObject.vote_average / 2)" :key="i"><font-awesome-icon icon="fa-solid fa-star" /></i>
-      <i v-for="(star, k) in Math.round(5 - contentObject.vote_average / 2)" :key="k + 5"><font-awesome-icon icon="fa-regular fa-star" /></i>
-    </ul> -->
   </div>
 </template>
 
@@ -87,6 +76,7 @@ export default {
         background-color: black;
         display: none;
         padding: 40px 20px 0 20px;
+        overflow: scroll;
 
         li {
           margin-bottom: 5px;

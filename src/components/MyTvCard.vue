@@ -77,6 +77,7 @@ export default {
         background-color: black;
         display: none;
         padding: 40px 20px 0 20px;
+        overflow: scroll;
 
         li {
           margin-bottom: 5px;
