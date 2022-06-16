@@ -106,7 +106,6 @@ export default {
 
   .wrapper{
     width: 80%;
-    background-color: rgb(148, 108, 108);
     height: 100%;
     margin: 0 auto;
     display: flex;
